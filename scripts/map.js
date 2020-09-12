@@ -105,6 +105,7 @@ $(window).on('load', function() {
       // If icon contains '.', assume it's a path to a custom icon,
       // otherwise create a Font Awesome icon
       var iconSize = point['Custom Size'];
+      console.log(iconSize)
       var size = (iconSize.indexOf('x') > 0)
         ? [parseInt(iconSize.split('x')[0]), parseInt(iconSize.split('x')[1])]
         : [32, 32];
@@ -125,9 +126,9 @@ $(window).on('load', function() {
 
       if (point.Latitude !== '' && point.Longitude !== '') {
         var marker = L.marker([point.Latitude, point.Longitude], {icon: icon})
-          .bindPopup("<b>" + point['Name'] + '</b><br>' +
-          (point['Image'] ? ('<img src="' + point['Image'] + '"><br>') : '') +
-          point['Description']);
+          .bindPopup("<b>" + point['Address'] + '</b><br>Current Team: ' +
+          point['Current Team'] +"<br>"+
+          "<em>" + point['Description'] + "</em>");
 
         if (layers !== undefined && layers.length !== 1) {
           marker.addTo(layers[point.Group]);
@@ -998,7 +999,7 @@ $(window).on('load', function() {
               // First, read 3 sheets: Options, Points, and Polylines
               $.when(
                 $.getJSON(apiUrl + spreadsheetId + '/values/Options?key=' + googleApiKey),
-                $.getJSON(apiUrl + spreadsheetId + '/values/Points?key=' + googleApiKey),
+                $.getJSON(apiUrl + spreadsheetId + '/values/Ticket List?key=' + googleApiKey),
                 $.getJSON(apiUrl + spreadsheetId + '/values/Polylines?key=' + googleApiKey)
               ).done(function(options, points, polylines) {
 
