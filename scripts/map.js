@@ -69,7 +69,7 @@ $(window).on('load', function() {
     var layerNamesFromSpreadsheet = [];
     var layers = {};
     for (var i in points) {
-      var pointLayerNameFromSpreadsheet = points[i].Group;
+      var pointLayerNameFromSpreadsheet = points[i].Status;
       if (layerNamesFromSpreadsheet.indexOf(pointLayerNameFromSpreadsheet) === -1) {
         markerColors.push(
           points[i]['Marker Icon'].indexOf('.') > 0
@@ -130,7 +130,7 @@ $(window).on('load', function() {
           point['Description']);
 
         if (layers !== undefined && layers.length !== 1) {
-          marker.addTo(layers[point.Group]);
+          marker.addTo(layers[point.Status]);
         }
 
         markerArray.push(marker);
@@ -211,7 +211,7 @@ $(window).on('load', function() {
       function updateTable() {
         var pointsVisible = [];
         for (i in points) {
-          if (map.hasLayer(layers[points[i].Group]) &&
+          if (map.hasLayer(layers[points[i].Status]) &&
               map.getBounds().contains(L.latLng(points[i].Latitude, points[i].Longitude))) {
             pointsVisible.push(points[i]);
           }
@@ -571,7 +571,7 @@ $(window).on('load', function() {
 
     layer.bindPopup(info);
 
-    
+
     // Add polygon label if needed
     if (!allTextLabels[polygon]) { allTextLabels.push([]) }
 
@@ -646,7 +646,7 @@ $(window).on('load', function() {
       var geocoder = L.Control.geocoder({
         expand: 'click',
         position: getSetting('_mapSearch'),
-        
+
         geocoder: L.Control.Geocoder.nominatim({
           geocodingQueryParams: {
             viewbox: '',  // by default, viewbox is empty
@@ -1016,7 +1016,7 @@ $(window).on('load', function() {
                       parse(polylines)
                     )
                   } else {
-                    
+
                     // Fetch another polygons sheet
                     $.getJSON(apiUrl + spreadsheetId + '/values/' + polygonSheets.shift() + '?key=' + googleApiKey, function(data) {
                       createPolygonSettings( parse([data]) )
@@ -1031,7 +1031,7 @@ $(window).on('load', function() {
                 fetchPolygonsSheet( polygonSheets )
 
               })
-              
+
             }
           )
 
