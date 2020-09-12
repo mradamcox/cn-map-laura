@@ -1045,7 +1045,7 @@ $(window).on('load', function() {
          mapData = Procsv;
          mapData.load({
            self: mapData,
-           tabs: ['Options', 'Points', 'Polygons', 'Polylines'],
+           tabs: ['Options', 'Ticket List', 'Polygons', 'Polylines'],
            callback: onMapDataLoad
          });
        }
