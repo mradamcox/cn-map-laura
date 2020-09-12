@@ -131,7 +131,7 @@ $(window).on('load', function() {
           "<br>Status: "+ point['Status']+
           "<br>Resident Name: "+ point['Resident Name']+
           "<br>Resident Phone: "+ point['Resident Phone']+
-          "<em>" + point['Description'] + "</em>");
+          "<br><em>" + point['Description'] + "</em>");
 
         if (layers !== undefined && layers.length !== 1) {
           marker.addTo(layers[point.Group]);
